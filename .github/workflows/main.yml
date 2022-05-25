@@ -27,7 +27,8 @@ jobs:
 
     steps:
     - name: get message
-      run: echo "Token ${{ secrets.PAT_TOKEN }}"
+      uses: actions/checkout@v2 
+    
       
     - name: ThreatModeler Process
       id: iac-assist
@@ -43,7 +44,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: './DeepTest'
+        dir: ${{ ./ }}
         batchsize: 2
         apikey: ${{ secrets.TM_TFPOC_API_KEY }}
         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
