@@ -35,7 +35,11 @@ jobs:
       with:
         repository: threatModeler/GitHubCLI
         token: ${{ secrets.PAT_TOKEN }}
-        path: ./.github/actions
+        path: ./.github/actions/iac
+        
+    - name: run my action   
+      uses: ./.github/actions/iac
+      with:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
