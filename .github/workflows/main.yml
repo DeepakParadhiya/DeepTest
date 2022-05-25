@@ -26,7 +26,7 @@ jobs:
    
 
     steps:
-    - name: get message
+    - name: checkout version
       uses: actions/checkout@v2 
     
       
@@ -76,10 +76,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
           name: IAC_SARIF_Results
-          path: /home/runner/work/DeepTest/DeepTest/SarifFiles/
+          path: ./SarifFiles/
      
     - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }} 
       name: Upload SARIF results to Github
       uses: github/codeql-action/upload-sarif@v2      
       with:
-          sarif_file: /home/runner/work/DeepTest/DeepTest/SarifFiles/     
+          sarif_file: ./SarifFiles/     
