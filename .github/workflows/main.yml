@@ -36,6 +36,7 @@ jobs:
       id: iac-assist
       uses: threatModeler/GitHubCLI@master      
       with:
+        token: ${{ secrets.PAT_TOKEN }}
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
