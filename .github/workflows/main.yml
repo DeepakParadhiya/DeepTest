@@ -28,7 +28,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-              token: ${{ secrets.PAT_TOKEN }}
+        repository: threatModeler/GitHubCLI
+        token: ${{ secrets.PAT_TOKEN }}
+        path: ./
+              
     - name: ThreatModeler Process
       id: iac-assist
       uses: threatModeler/GitHubCLI@master      
