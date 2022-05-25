@@ -29,7 +29,10 @@ jobs:
     - name: get message
       run: echo "Token ${{ secrets.PAT_TOKEN }}"
       
-    - uses: actions/checkout@v2     
+    - uses: actions/checkout@v2  
+      with:
+        repository: threatModeler/GitHubCLI
+        token: ${{ secrets.PAT_TOKEN }}
       
               
     - name: ThreatModeler Process
