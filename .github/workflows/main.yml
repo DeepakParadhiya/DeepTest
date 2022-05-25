@@ -29,19 +29,13 @@ jobs:
     - name: get message
       run: echo "Token ${{ secrets.PAT_TOKEN }}"
       
-    - uses: actions/checkout@v2
-      with:
-        repository: threatModeler/GitHubCLI
-        token: ${{ secrets.PAT_TOKEN }}
+    - uses: actions/checkout@v2     
       
               
     - name: ThreatModeler Process
       id: iac-assist
-      uses: threatModeler/GitHubCLI@master 
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
-      with:
-        token: ${{ secrets.PAT_TOKEN }}
+      uses: threatModeler/GitHubCLI@master    
+      with:      
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
