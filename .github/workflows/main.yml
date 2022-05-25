@@ -44,7 +44,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: ${{ ./ }}
+        dir: ${{ './' }}
         batchsize: 2
         apikey: ${{ secrets.TM_TFPOC_API_KEY }}
         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
