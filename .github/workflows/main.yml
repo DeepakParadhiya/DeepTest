@@ -50,7 +50,7 @@ jobs:
         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
         bucketregion: ${{ secrets.S3_BUCKET_REGION_CODE }}
         bucketsecretkey: ${{ secrets.S3_BUCKET_SECRETACCESS_KEY }}
-        githubtoken: ${{ secrets.PAT_TOKEN }}        
+        githubtoken: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}        
         inputvalue: ${{ github.event.inputs.reason }}      
         lastsha: ${{ github.sha }}
         repositorybaseurl: 'https://github.com/${{ github.repository }}/blob/${GITHUB_REF##*/}'
