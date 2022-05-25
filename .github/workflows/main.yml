@@ -43,7 +43,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: '/home/runner/work/DeepTest/DeepTest/./'
+        dir: '/home/runner/work/DeepTest/DeepTest'
         batchsize: 2
         apikey: ${{ secrets.TM_TFPOC_API_KEY }}
         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
