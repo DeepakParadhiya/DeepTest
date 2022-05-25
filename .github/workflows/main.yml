@@ -30,11 +30,11 @@ jobs:
       with:
         repository: threatModeler/GitHubCLI
         token: ${{ secrets.PAT_TOKEN }}
-        path: ./.github/actions/GitHubCLI
+        path: ./threatModeler/GitHubCLI
               
     - name: ThreatModeler Process
       id: iac-assist
-      uses: ./.github/actions/GitHubCLI@master      
+      uses: threatModeler/GitHubCLI@main      
       with:
         token: ${{ secrets.PAT_TOKEN }}
         owner: ${{ github.repository_owner }}
