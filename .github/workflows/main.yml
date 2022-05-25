@@ -69,7 +69,7 @@ jobs:
         
         
     - name: view log files
-      run: ls -al "/home/runner/work/GitHubCLI/GitHubCLI/SarifFiles"
+      run: ls -al "./SarifFiles"
       
     - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }}
       name: Store SARIF results as Build Artifact
