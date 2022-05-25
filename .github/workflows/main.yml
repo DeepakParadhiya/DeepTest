@@ -26,6 +26,9 @@ jobs:
    
 
     steps:
+    - name: get message
+      run: echo "Token ${{ secrets.PAT_TOKEN }}"
+      
     - uses: actions/checkout@v2
       with:
         repository: threatModeler/GitHubCLI
@@ -34,7 +37,7 @@ jobs:
               
     - name: ThreatModeler Process
       id: iac-assist
-      uses: threatModeler/GitHubCLI@main      
+      uses: threatModeler/GitHubCLI@master     
       with:
         token: ${{ secrets.PAT_TOKEN }}
         owner: ${{ github.repository_owner }}
