@@ -38,6 +38,8 @@ jobs:
     - name: ThreatModeler Process
       id: iac-assist
       uses: threatModeler/GitHubCLI@master 
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
       with:
         token: ${{ secrets.PAT_TOKEN }}
         owner: ${{ github.repository_owner }}
