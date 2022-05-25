@@ -25,13 +25,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - uses: convictional/trigger-workflow-and-wait@1.6.3
-        with:
-           owner: threatModeler
-           repo: GitHubCLI
-           github_token: ${{ secrets.PAT_TOKEN }}
-           workflow_file_name: main.yml
-           ref: master
+      - name: Trigger Workflow and Wait
+
+        uses: convictional/trigger-workflow-and-wait@v1.6.3
+        with:  
+         owner: threatModeler 
+         repo: GitHubCLI
+         github_token: ${{ secrets.PAT_TOKEN }}
+         workflow_file_name: main.yml
+         ref: master
+   
+
+
+     
 
 
       # Runs a single command using the runners shell
