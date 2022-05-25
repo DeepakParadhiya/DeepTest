@@ -43,7 +43,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         name: ${{ github.repository }}
         branch: ${{ github.ref }}
-        dir: ${{ './' }}
+        dir: '/home/runner/work/DeepTest/DeepTest/'
         batchsize: 2
         apikey: ${{ secrets.TM_TFPOC_API_KEY }}
         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
@@ -75,10 +75,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
           name: IAC_SARIF_Results
-          path: /home/runner/work/GitHubCLI/GitHubCLI/SarifFiles/
+          path: /home/runner/work/DeepTest/DeepTest/SarifFiles/
      
     - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }} 
       name: Upload SARIF results to Github
       uses: github/codeql-action/upload-sarif@v2      
       with:
-          sarif_file: /home/runner/work/GitHubCLI/GitHubCLI/SarifFiles/     
+          sarif_file: /home/runner/work/DeepTest/DeepTest/SarifFiles/     
