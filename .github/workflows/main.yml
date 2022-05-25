@@ -30,15 +30,15 @@ jobs:
       uses: actions/checkout@v2 
     
       
-    - name: ThreatModeler Process
-      id: iac-assist
+    - name: ThreatModeler Process      
       uses: actions/checkout@v2  
       with:
         repository: threatModeler/GitHubCLI
         token: ${{ secrets.PAT_TOKEN }}
         path: ./.github/actions/iac
         
-    - name: run my action   
+    - name: run my action
+      id: iac-assist
       uses: ./.github/actions/iac
       with:
         owner: ${{ github.repository_owner }}
