@@ -25,9 +25,9 @@ jobs:
       - name: ThreatModeler Process      
         uses: actions/checkout@v2  
         with:
-        repository: threatModeler/GitHubCLI
-        token: ${{ secrets.PAT_TOKEN }}
-        path: ./.github/actions/iac
+         repository: threatModeler/GitHubCLI
+         token: ${{ secrets.PAT_TOKEN }}
+         path: ./.github/actions/iac
         
       - name: run my action
         id: iac-assist
@@ -35,17 +35,17 @@ jobs:
         with:
          owner: ${{ github.repository_owner }}
          name: ${{ github.repository }}
-        branch: ${{ github.ref }}
-        dir: ${{ './' }}
-        batchsize: 2
-        apikey: ${{ secrets.TM_TFPOC_API_KEY }}
-        bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
-        bucketregion: ${{ secrets.S3_BUCKET_REGION_CODE }}
-        bucketsecretkey: ${{ secrets.S3_BUCKET_SECRETACCESS_KEY }}
-        githubtoken: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}        
-        inputvalue: ${{ github.event.inputs.reason }}      
-        lastsha: ${{ github.sha }}
-        repositorybaseurl: 'https://github.com/${{ github.repository }}/blob/${GITHUB_REF##*/}'
+         branch: ${{ github.ref }}
+         dir: ${{ './' }}
+         batchsize: 2
+         apikey: ${{ secrets.TM_TFPOC_API_KEY }}
+         bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
+         bucketregion: ${{ secrets.S3_BUCKET_REGION_CODE }}
+         bucketsecretkey: ${{ secrets.S3_BUCKET_SECRETACCESS_KEY }}
+         githubtoken: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}        
+         inputvalue: ${{ github.event.inputs.reason }}      
+         lastsha: ${{ github.sha }}
+         repositorybaseurl: 'https://github.com/${{ github.repository }}/blob/${GITHUB_REF##*/}'
         
         
       - name: Print Identified File Names
