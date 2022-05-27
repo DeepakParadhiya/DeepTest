@@ -47,21 +47,17 @@ jobs:
          lastsha: ${{ github.sha }}
          repositorybaseurl: 'https://github.com/${{ github.repository }}/blob/${GITHUB_REF##*/}'
         
-        
-      - name: Print Identified File Names
-        run: echo "Log file directory ${{ steps.iac-assist.outputs.logfilepath }}"
-         echo "Last commit sha  ${{ github.sha }}"
-         echo "File status value ${{ steps.iac-assist.outputs.filesStatus }}"
-         echo "Github call ${{ steps.iac-assist.outputs.GithubCall }}"
-         echo "CFN Files ${{ steps.iac-assist.outputs.cfnfiles }}"
-         echo "Azure Files ${{ steps.iac-assist.outputs.armfiles }}"
-         echo "Terraform Files ${{ steps.iac-assist.outputs.tffiles }}"
-         echo "input value Files ${{ steps.iac-assist.outputs.inputValueCall }}"
-         echo "Files process ${{ steps.iac-assist.outputs.filesProcess }}"
+    
         
         
       - name: view log files
         run: ls -al "./SarifFiles"
+        
+      - name: Store logs results as Build Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: IAC_LOG_Results
+          path: ./Logs/
       
       - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }}
         name: Store SARIF results as Build Artifact
