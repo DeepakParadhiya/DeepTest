@@ -1,0 +1,77 @@
+name: CI
+
+
+on:
+
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+  workflow_dispatch:
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:    
+      - uses: actions/checkout@v3
+
+      - name: ThreatModeler Process      
+        uses: actions/checkout@v2  
+        with:
+        repository: threatModeler/GitHubCLI
+        token: ${{ secrets.PAT_TOKEN }}
+        path: ./.github/actions/iac
+        
+      - name: run my action
+        id: iac-assist
+        uses: ./.github/actions/iac
+        with:
+         owner: ${{ github.repository_owner }}
+         name: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        dir: ${{ './' }}
+        batchsize: 2
+        apikey: ${{ secrets.TM_TFPOC_API_KEY }}
+        bucketkey: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
+        bucketregion: ${{ secrets.S3_BUCKET_REGION_CODE }}
+        bucketsecretkey: ${{ secrets.S3_BUCKET_SECRETACCESS_KEY }}
+        githubtoken: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}        
+        inputvalue: ${{ github.event.inputs.reason }}      
+        lastsha: ${{ github.sha }}
+        repositorybaseurl: 'https://github.com/${{ github.repository }}/blob/${GITHUB_REF##*/}'
+        
+        
+      - name: Print Identified File Names
+        run: echo "Log file directory ${{ steps.iac-assist.outputs.logfilepath }}"
+         echo "Last commit sha  ${{ github.sha }}"
+         echo "File status value ${{ steps.iac-assist.outputs.filesStatus }}"
+         echo "Github call ${{ steps.iac-assist.outputs.GithubCall }}"
+         echo "CFN Files ${{ steps.iac-assist.outputs.cfnfiles }}"
+         echo "Azure Files ${{ steps.iac-assist.outputs.armfiles }}"
+         echo "Terraform Files ${{ steps.iac-assist.outputs.tffiles }}"
+         echo "input value Files ${{ steps.iac-assist.outputs.inputValueCall }}"
+         echo "Files process ${{ steps.iac-assist.outputs.filesProcess }}"
+        
+        
+      - name: view log files
+        run: ls -al "./SarifFiles"
+      
+      - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }}
+        name: Store SARIF results as Build Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: IAC_SARIF_Results
+          path: ./SarifFiles/
+     
+      - if: ${{ steps.iac-assist.outputs.filesProcess == 'true' }} 
+        name: Upload SARIF results to Github
+        uses: github/codeql-action/upload-sarif@v2      
+        with:
+          sarif_file: ./SarifFiles/
