@@ -2,7 +2,8 @@ name: CI
 
 
 on:
-
+  
+    
   push:
     branches: [ main ]
   pull_request:
@@ -10,7 +11,15 @@ on:
 
 
   workflow_dispatch:
-
+   inputs:
+      reason:
+        description: 'Do you want to process all files?'
+        required: false
+        default: 'No - Only Last Commit Files'
+        type: choice
+        options:
+        - Yes - All Files
+        - No - Only Last Commit Files
 
 jobs:
 
