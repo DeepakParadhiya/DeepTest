@@ -1,5 +1,5 @@
 {
-    "AWSTemplateFormatVersion": "2010-09-09",   
+    "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "AWS CloudFormation Cross-Stack Reference Sample Template: Demonstrates how to reference resources from a different stack. This template provisions an EC2 instance in an EC2 Security Group provisioned in a different stack. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
     "Parameters": {
         "NetworkStackName": {
